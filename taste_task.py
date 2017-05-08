@@ -1,8 +1,10 @@
 # taste task. 5/1/2017
 # red=practice; blue=prediction error
-# run01 and run02 are practice (need to be paired with red) length 11:40
-# run03 and run04 are prediction error (need to be paired with blue) length 6:29
-#nontask 19:52 sec
+# run01 and run02 are practice (need to be paired with red) length 
+# run03 and run04 are prediction error (need to be paired with blue) 
+#water is pump 0
+#milkshake is pump 1
+#rinse is pump 2
 #TR 2 sec
 #the pkl file contains all study data as a back up including what files were used, useful for sanity checks
 #the csv file is easier to read
@@ -31,7 +33,6 @@ if not dlg.OK:
 #######################################
 subdata={}
 
-#subdata['subcode']='test'
 subdata['completed']=0
 subdata['cwd']=os.getcwd()
 
@@ -74,8 +75,23 @@ if not ser.isOpen():
 
 time.sleep(1)
 
+#global settings
+diameter=26.59
+mls_H2O=6
+mls_milk=6
+delivery_time=6.0
+cue_time=1.0
+wait_time=1.0
+rinse_time=2.0
+mls_rinse=3.0
+str='\r'
+rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
+rate_milk = mls_milk*(3600.0/delivery_time)  # mls/hour 300
+rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
+
+
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
-pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT2571MH\r','1RAT2571MH\r','2RAT3600MH\r', '0VOL5\r','1VOL5\r', '2VOL3\r','0DIA26.95MH\r','1DIA26.95MH\r', '2DIA26.95MH\r']
+pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_H2O,'1RAT%iMH\r'%rate_milk,'2RAT%iMH\r'%rate_rinse,'0VOL%i%s'%(mls_H2O,str), '1VOL%i%s'%(mls_milk,str),'2VOL%i%s'%(mls_rinse,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
 
 for c in pump_setup:
     ser.write(c)
@@ -123,17 +139,6 @@ scan_trigger_text = visual.TextStim(win, text='Waiting for scan trigger...', pos
 
 
 
-#global settings
-#if these are changed you need to change the onset length in the create onset files
-#also need to change the rate above because it is hardcoded
-diameter=26.59
-mls_to_deliver=5
-delivery_time=7.0
-cue_time=1.0
-wait_time=1.0
-rinse_time=3.0
-
-rate = mls_to_deliver*(3600.0/delivery_time)  # mls/hour 300
 
 #####################
 #load in onset files#
@@ -161,11 +166,10 @@ print(trialcond,'trial conditions')
 
 ntrials=len(trialcond)
 pump=N.zeros(ntrials)
-#    pump zero is neutral, pump 1 is tasty, pump 2 is not tasty
-
+#    pump zero is neutral, pump 1 is tasty, pump 2 is neutral
+#    these need to match the onset files!
 if info['color']=='red':
     pump[trialcond==1]=1 #tasty pump
-    #pump[trialcond==2]=2 #water
     stim_images=['waterlogo.jpg','tasty.jpg']
 else:
     stim_images=['waterlogo.jpg', 'tasty.jpg', 'tasty.jpg']

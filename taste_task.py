@@ -77,13 +77,13 @@ time.sleep(1)
 
 #global settings
 diameter=26.59
-mls_H2O=6
-mls_milk=6
+mls_H2O=3.0
+mls_milk=3.0
 delivery_time=6.0
 cue_time=1.0
 wait_time=1.0
 rinse_time=2.0
-mls_rinse=3.0
+mls_rinse=2.0
 str='\r'
 rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
 rate_milk = mls_milk*(3600.0/delivery_time)  # mls/hour 300

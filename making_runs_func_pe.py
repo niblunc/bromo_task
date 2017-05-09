@@ -18,7 +18,7 @@ def make_onsets(run):
     jitter2=jitter.tolist()
 #this will make the random trial_lengths
     for x in N.nditer(jitter, op_flags=['readwrite']):
-        x[...] = 11 + x
+        x[...] = 12 + x
 
     tlength=jitter.tolist()
 

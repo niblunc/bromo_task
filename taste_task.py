@@ -26,6 +26,7 @@ info['port'] = '/dev/tty.USA19H1432P1.1'
 info['participant'] = 'test'
 info['run']=''
 info['color']=''
+info['session']=''
 
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
@@ -51,13 +52,13 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/gracer/Documents/bromo_task/onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/gracer/Documents/bromo_task/onset_files/jitter_'+info['run']
-subdata['conds']='/Users/gracer/Documents/bromo_task/onset_files/conds_'+info['run']
+subdata['onset']='/Users/gracer/Documents/bromo_task/onset_files/onsets_'+info['run']+info['session']
+subdata['jitter']='/Users/gracer/Documents/bromo_task/onset_files/jitter_'+info['run']+info['session']
+subdata['conds']='/Users/gracer/Documents/bromo_task/onset_files/conds_'+info['run']+info['session']
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/gracer/Documents/Output/%s_%s_subdata.log'%(info['participant'],subdata['datestamp'])
+dataFileName='/Users/gracer/Documents/Output/%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []

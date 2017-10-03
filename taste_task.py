@@ -1,4 +1,4 @@
-# taste task. 5/1/2017
+# taste task. 9/26/2017
 # red=practice; blue=prediction error
 # run01 and run02 are practice (need to be paired with red) length 
 # run03 and run04 are prediction error (need to be paired with blue) 
@@ -16,7 +16,7 @@ import serial
 import numpy as N
 import sys,os,pickle
 import datetime
-import exptutils
+import exptutilsooooooooooooooooooooooooooooooooooooooooooooooooooooo
 from exptutils import *
 
 monSize = [800, 600]
@@ -52,13 +52,13 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/gracer/Documents/bromo_task/onset_files/onsets_'+info['run']+info['session']
-subdata['jitter']='/Users/gracer/Documents/bromo_task/onset_files/jitter_'+info['run']+info['session']
-subdata['conds']='/Users/gracer/Documents/bromo_task/onset_files/conds_'+info['run']+info['session']
+subdata['onset']='/Users/gracer/Documents/bromo_task/onset_files/onsets_'+info['run']
+subdata['jitter']='/Users/gracer/Documents/bromo_task/onset_files/jitter_'+info['run']
+subdata['conds']='/Users/gracer/Documents/bromo_task/onset_files/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/gracer/Documents/Output/%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
+dataFileName='/Users/gracer/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -174,9 +174,9 @@ if info['color']=='red':
     stim_images=['waterlogo.jpg','tasty.jpg']
 else:
     stim_images=['waterlogo.jpg', 'tasty.jpg', 'tasty.jpg']
-    pump[trialcond==0]=0 #water pump
-    pump[trialcond==1]=1 #tasty pump
-    pump[trialcond==2]=0 #water pump
+    pump[trialcond==0]=0 #water pump, water
+    pump[trialcond==1]=1 #tasty pump, milk
+    pump[trialcond==2]=0 #water pump, miss
 
 subdata['trialdata']={}
 

@@ -16,7 +16,7 @@ import serial
 import numpy as N
 import sys,os,pickle
 import datetime
-import exptutilsooooooooooooooooooooooooooooooooooooooooooooooooooooo
+import exptutils
 from exptutils import *
 
 monSize = [800, 600]
@@ -27,7 +27,7 @@ info['participant'] = 'test'
 info['run']=''
 info['color']=''
 info['session']=''
-
+info['computer']=(os.getcwd()).split('/')[2]
 dlg = gui.DlgFromDict(info)
 if not dlg.OK:
     core.quit()
@@ -52,13 +52,13 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/gracer/Documents/bromo_task/onset_files/onsets_'+info['run']
-subdata['jitter']='/Users/gracer/Documents/bromo_task/onset_files/jitter_'+info['run']
-subdata['conds']='/Users/gracer/Documents/bromo_task/onset_files/conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/gracer/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -283,11 +283,11 @@ def run_block():
 run_block()
 
 subdata.update(info)
-f=open('/Users/gracer/Documents/Output/bromo_subdata_%s.pkl'%datestamp,'wb')
+f=open('/Users/'+info['computer']+'/Documents/Output/bromo_subdata_%s.pkl'%datestamp,'wb')
 pickle.dump(subdata,f)
 f.close()
 
-myfile = open('/Users/gracer/Documents/Output/bromo_subdata_%s.csv'%datestamp.format(**info), 'wb')
+myfile = open('/Users/'+info['computer']+'/Documents/Output/bromo_subdata_%s.csv'%datestamp.format(**info), 'wb')
 wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
 wr.writerow(['event','data'])
 for row in ratings_and_onsets:

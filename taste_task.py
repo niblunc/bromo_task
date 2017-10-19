@@ -52,9 +52,9 @@ subdata['SS']={}
 subdata['broke_on_trial']={}
 subdata['simulated_response']=False
 
-subdata['onset']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'onsets_'+info['run']
-subdata['jitter']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'jitter_'+info['run']
-subdata['conds']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'conds_'+info['run']
+subdata['onset']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/onsets_'+info['run']
+subdata['jitter']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/jitter_'+info['run']
+subdata['conds']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'+info['session']+'/conds_'+info['run']
 subdata['quit_key']='q'
 
 #######################################

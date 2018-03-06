@@ -1,4 +1,5 @@
 # taste task. 10/19/2017
+# updating the git
 # red=practice; blue=prediction error
 # run01 and run02 are practice (need to be paired with red) length 
 # run03 and run04 are prediction error (need to be paired with blue) 

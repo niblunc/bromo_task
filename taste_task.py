@@ -87,7 +87,9 @@ rinse_time=2.0
 mls_rinse=2.0
 str='\r'
 rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
+
 rate_milk = mls_milk*(3600.0/delivery_time)  # mls/hour 300
+print("THIS IS THE SWEET RATE %f"%rate_milk)
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
 
 
@@ -100,7 +102,7 @@ for c in pump_setup:
 
 for c in pump_phases:
     ser.write(c)
-    time.sleep(.25)
+#    time.sleep(.25)
 
 # HELPER FUNCTIONS
 def show_instruction(instrStim):

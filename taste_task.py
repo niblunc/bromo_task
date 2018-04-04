@@ -221,12 +221,12 @@ def run_block():
         t = clock.getTime()
         ratings_and_onsets.append(["image=%s"%stim_images[trialcond[trial]],t])
         visual_stim.draw()#making image of the logo appear
-        logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])
+#        logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])
             
         while clock.getTime()<trialdata['onset']:
             pass
         win.flip()
-            
+        logging.log(logging.DATA, "image=%s"%stim_images[trialcond[trial]])    
         while clock.getTime()<(trialdata['onset']+cue_time):#show the image
             pass
 
@@ -246,6 +246,7 @@ def run_block():
         message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#this lasts throught the wait
         message.draw()
         win.flip()
+        logging.log(logging.DATA, "WAIT")  
         t = clock.getTime()
         ratings_and_onsets.append(["wait", t])
         
@@ -258,7 +259,7 @@ def run_block():
         message=visual.TextStim(win, text='', pos=(0, 0), height=2)#this lasts throught the rinse 
         message.draw()
         win.flip()
-                
+        logging.log(logging.DATA, "RINSE")          
         print 'injecting rinse via pump at address %d'%2
         t = clock.getTime()
         ratings_and_onsets.append(['injecting rinse via pump at address %d'%2, t])
@@ -270,6 +271,7 @@ def run_block():
         message=visual.TextStim(win, text='+', pos=(0, 0), height=2)#lasts through the jitter 
         message.draw()
         win.flip()
+        logging.log(logging.DATA, "jitter")  
         t = clock.getTime()
         ratings_and_onsets.append(["jitter", t])
 

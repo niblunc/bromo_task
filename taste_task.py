@@ -1,4 +1,4 @@
-# taste task. 10/19/2017
+# taste task. 4/4/2017
 # updating the git
 # red=practice; blue=prediction error
 # run01 and run02 are practice (need to be paired with red) length 
@@ -23,7 +23,7 @@ from exptutils import *
 monSize = [800, 600]
 info = {}
 info['fullscr'] = False
-info['port'] = '/dev/tty.USA19H1432P1.1'
+info['port'] = '/dev/tty.usbserial'
 info['participant'] = 'test'
 info['run']=''
 info['color']=''
@@ -59,7 +59,7 @@ subdata['conds']='/Users/'+info['computer']+'/Documents/bromo_task/onset_files/'
 subdata['quit_key']='q'
 
 #######################################
-dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_subdata.log'%(info['participant'],info['session'],subdata['datestamp'])
+dataFileName='/Users/'+info['computer']+'/Documents/Output/%s_%s_%s_%s_subdata.log'%(info['participant'],info['session'],info['run'],subdata['datestamp'])
 logging.console.setLevel(logging.INFO)
 logfile=logging.LogFile(dataFileName,level=logging.DATA)
 ratings_and_onsets = []
@@ -92,7 +92,7 @@ rate_H2O = mls_H2O*(3600.0/delivery_time)  # mls/hour 300
 rate_milk = mls_milk*(3600.0/delivery_time)  # mls/hour 300
 print("THIS IS THE SWEET RATE %f"%rate_milk)
 rate_rinse = mls_rinse*(3600.0/rinse_time)  # mls/hour 300
-
+print("THIS IS THE rinse RATE %f"%rate_rinse)
 
 pump_setup = ['0VOL ML\r', '1VOL ML\r', '2VOL ML\r']
 pump_phases=['0PHN01\r','1PHN01\r', '2PHN01\r','0CLDINF\r','1CLDINF\r','2CLDINF\r','0DIRINF\r','1DIRINF\r','2DIRINF\r','0RAT%iMH\r'%rate_H2O,'1RAT%iMH\r'%rate_milk,'2RAT%iMH\r'%rate_rinse,'0VOL%i%s'%(mls_H2O,str), '1VOL%i%s'%(mls_milk,str),'2VOL%i%s'%(mls_rinse,str),'0DIA%.2fMH\r'%diameter,'1DIA%.2fMH\r'%diameter, '2DIA%.2fMH\r'%diameter]
@@ -103,7 +103,7 @@ for c in pump_setup:
 
 for c in pump_phases:
     ser.write(c)
-#    time.sleep(.25)
+    time.sleep(.25)
 
 # HELPER FUNCTIONS
 def show_instruction(instrStim):
